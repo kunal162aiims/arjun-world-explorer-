@@ -522,18 +522,57 @@ function continentPage(name){
 }
 function quizContinent(name,kind){state.quizContinent=name;quiz(kind)}
 function quiz(kind){
- let pool=(state.quizContinent?continentCountries(state.quizContinent):countries); if(pool.length<4)pool=countries;
- const correct=(currentQuiz&&currentQuiz.kind===kind&&currentQuiz.correct&&pool.includes(currentQuiz.correct))?currentQuiz.correct:pick(pool);
- currentQuiz={kind,correct}; const choices=[correct];
- while(choices.length<4){const o=pick(pool),ans=quizAnswer(o,kind);if(!choices.some(x=>quizAnswer(x,kind)===ans))choices.push(o)}
+ let pool=(state.quizContinent?continentCountries(state.quizContinent):countries);
+ if(pool.length<4) pool=countries;
+
+ // A country selected from a profile is a one-time forced question.
+ let correct=null;
+ if(currentQuiz && currentQuiz.kind===kind && currentQuiz.correct && currentQuiz.forced){
+   correct=currentQuiz.correct;
+   currentQuiz.forced=false;
+ }
+ if(!correct){
+   state.quizHistory=state.quizHistory||{};
+   state.quizHistory[kind]=state.quizHistory[kind]||[];
+   const history=state.quizHistory[kind];
+
+   // Avoid recent repeats. When the pool is exhausted, start a fresh cycle.
+   let fresh=pool.filter(c=>!history.includes(c.name));
+   if(fresh.length<1){
+     state.quizHistory[kind]=[];
+     fresh=pool;
+   }
+   correct=pick(fresh);
+   history.push(correct.name);
+   // Keep a short memory so the same country cannot immediately reappear.
+   state.quizHistory[kind]=history.slice(-Math.min(10,Math.max(0,pool.length-1)));
+ }
+ currentQuiz={kind,correct,forced:false};
+
+ const choices=[correct];
+ while(choices.length<4){
+   const o=pick(pool),ans=quizAnswer(o,kind);
+   if(!choices.some(x=>quizAnswer(x,kind)===ans)) choices.push(o);
+ }
  choices.sort(()=>Math.random()-.5);
+
  let q='';
  if(kind==='flag')q=`<div class="quiz-flag">${flagImg(correct,320)}</div><div class="quiz-question">Which country has this flag?</div>`;
  else if(kind==='capital')q=`<div class="quiz-flag">${flagImg(correct,240)}</div><div class="quiz-question">What is the capital of ${esc(correct.name)}?</div>`;
  else q=`<div class="quiz-flag"><div style="font-size:72px">💰</div></div><div class="quiz-question">Which currency is used in ${esc(correct.name)}?</div>`;
+
  app.innerHTML=`<div class="card"><div class="small muted">🎮 ${state.quizContinent?esc(state.quizContinent)+' ':''}CHALLENGE</div><h2>${kind==='flag'?'🚩 Flag Quiz':kind==='capital'?'🏛️ Capital Quiz':'💰 Currency Quiz'}</h2>${q}<div id="opts"></div><div id="result"></div></div>
  <div class="card"><div class="small muted">⭐ XP</div><div class="score">${state.points||0}</div><p class="small muted">Correct answer = +10 XP • Build a streak to earn badges.</p></div>`;
- const box=document.getElementById('opts');choices.forEach(o=>{const b=document.createElement('button');b.className='option';b.textContent=quizAnswer(o,kind);b.onclick=()=>answerQuiz(b,quizAnswer(o,kind));box.appendChild(b)})
+
+ const box=document.getElementById('opts');
+ choices.forEach(o=>{
+   const b=document.createElement('button');
+   b.className='option';
+   b.textContent=quizAnswer(o,kind);
+   b.onclick=()=>answerQuiz(b,quizAnswer(o,kind));
+   box.appendChild(b);
+ });
+ save();
 }
 function quizAnswer(c,kind){return kind==='flag'?c.name:kind==='capital'?c.capital:`${c.currency.name} (${c.currency.code})`}
 function challenge(){
@@ -571,7 +610,7 @@ function showCountry(i){
  <div class="card"><h3>🧭 Continue exploring</h3><div class="actions"><button class="btn" onclick="continentPage('${esc(c.continent)}')">Explore ${esc(c.continent)}</button><button class="btn" onclick="mapPage('${esc(c.continent)}')">Map this continent</button><button class="btn" onclick="learnPage()">Random lesson</button></div></div>`;
  updateHeader();
 }
-function quizFor(name,kind){state.quizContinent='';currentQuiz={kind,correct:countries.find(c=>c.name===name)};quiz(kind)}
+function quizFor(name,kind){state.quizContinent='';currentQuiz={kind,correct:countries.find(c=>c.name===name),forced:true};quiz(kind)}
 function answerQuiz(btn,answer){
  const c=currentQuiz.correct,correct=quizAnswer(c,currentQuiz.kind);document.querySelectorAll('.option').forEach(b=>b.disabled=true);
  if(answer===correct){btn.classList.add('correct');addXP(10);state.streak=(state.streak||0)+1;state.best=Math.max(state.best||0,state.streak);if(currentQuiz.kind==='flag')state.flagCorrect=(state.flagCorrect||0)+1;if(currentQuiz.kind==='currency')state.currencyCorrect=(state.currencyCorrect||0)+1;document.getElementById('result').innerHTML=`<div class="result success">Correct! 🎉 +10 XP • 🔥 Streak ${state.streak}</div>`}
@@ -585,7 +624,7 @@ function page(p){
 }
 function continentsPage(){app.innerHTML=`<div class="hero card"><div class="big">🌎 Explore the Continents</div><p>Every continent has its own landscapes, wildlife, cultures and stories. Pick one to begin.</p></div><div class="continent-grid">${Object.entries(CONTINENT_INFO).map(([n,x])=>`<button class="continent-card" data-c="${esc(n)}" onclick="continentPage('${esc(n)}')"><div class="emoji">${x.emoji}</div><strong>${n}</strong><span>${continentCountries(n).length} countries • ${x.tag}</span></button>`).join('')}</div>`}
 
-state.favorites=state.favorites||[];state.seenNames=state.seenNames||[];state.learned=state.learned||0;state.flagCorrect=state.flagCorrect||0;state.currencyCorrect=state.currencyCorrect||0;
+state.favorites=state.favorites||[];state.seenNames=state.seenNames||[];state.learned=state.learned||0;state.flagCorrect=state.flagCorrect||0;state.currencyCorrect=state.currencyCorrect||0;state.quizHistory=state.quizHistory||{};
 home();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
