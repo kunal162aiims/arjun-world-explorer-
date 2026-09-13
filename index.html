@@ -87,21 +87,37 @@ function mapPage(){
  <img class="map" src="world_reference_map.png" alt="World map with country boundaries"><p class="small muted">UN reference: Map No. 4651 Rev. 4, 1 July 2026.</p></div>`;
 }
 function quiz(kind){
- currentQuiz={kind,correct:pick(countries)}; const c=currentQuiz.correct,pool=countries.filter(x=>x!==c);
+ currentQuiz={kind,correct:pick(countries)};
+ const c=currentQuiz.correct,pool=countries.filter(x=>x!==c);
  const opts=[c,pick(pool),pick(pool),pick(pool)].sort(()=>Math.random()-.5);
- const question=kind==='flag'?`Which country has this flag? <div style="font-size:70px;text-align:center;margin:14px">${c.flag||'🌐'}</div>`:`What is the capital of <b>${esc(c.name)}</b>?`;
- app.innerHTML=`<div class="card"><h2>${kind==='flag'?'🚩 Flag Quiz':'🏛️ Capital Quiz'}</h2><p>${question}</p><div id="opts">${opts.map(o=>{
-   const answer=kind==='flag'?o.name:o.capital;
-   return `<button class="option" onclick="answerQuiz(this,${JSON.stringify(answer)})">${esc(answer)}</button>`;
- }).join('')}</div><div id="result"></div></div>`;
+ const question=kind==='flag'
+   ? `<div style="font-size:76px;text-align:center;margin:16px 0;line-height:1">${c.flag||'🌐'}</div><p style="text-align:center;font-weight:700">Which country has this flag?</p>`
+   : `<p>What is the capital of <b>${esc(c.name)}</b>?</p>`;
+ app.innerHTML=`<div class="card"><h2>${kind==='flag'?'🚩 Flag Quiz':'🏛️ Capital Quiz'}</h2><div>${question}</div><div id="opts"></div><div id="result"></div></div>`;
+ const box=document.getElementById('opts');
+ opts.forEach(o=>{
+   const btn=document.createElement('button');
+   btn.className='option'; btn.type='button';
+   btn.textContent=kind==='flag'?o.name:o.capital;
+   btn.addEventListener('click',()=>answerQuiz(btn,kind==='flag'?o.name:o.capital));
+   box.appendChild(btn);
+ });
 }
 function answerQuiz(btn,answer){
  const c=currentQuiz.correct,correct=currentQuiz.kind==='flag'?c.name:c.capital;
  document.querySelectorAll('.option').forEach(b=>b.disabled=true);
- if(answer===correct){btn.classList.add('correct');state.points+=10;state.streak=(state.streak||0)+1;state.best=Math.max(state.best,state.streak);
-  document.getElementById('result').innerHTML='<p class="success" style="padding:12px;border-radius:12px">Correct! 🎉 +10 points</p>';
- }else{btn.classList.add('wrong');state.streak=0;document.getElementById('result').innerHTML=`<p style="padding:12px;border-radius:12px;background:#fff2f2">Not quite. Correct answer: <b>${esc(correct)}</b></p>`}
- save();document.getElementById('result').innerHTML+=`<button class="btn primary" style="margin-top:8px;width:100%" onclick="quiz('${currentQuiz.kind}')">Next question →</button>`;
+ if(answer===correct){
+   btn.classList.add('correct'); state.points+=10; state.streak=(state.streak||0)+1; state.best=Math.max(state.best,state.streak);
+   document.getElementById('result').innerHTML='<p class="success" style="padding:12px;border-radius:12px">Correct! 🎉 +10 points</p>';
+ }else{
+   btn.classList.add('wrong'); state.streak=0;
+   document.getElementById('result').innerHTML=`<p style="padding:12px;border-radius:12px;background:#fff2f2">Not quite. Correct answer: <b>${esc(correct)}</b></p>`;
+ }
+ save();
+ const next=document.createElement('button');
+ next.className='btn primary'; next.type='button'; next.style.cssText='margin-top:8px;width:100%'; next.textContent='Next question →';
+ next.addEventListener('click',()=>quiz(currentQuiz.kind));
+ document.getElementById('result').appendChild(next);
 }
 function progress(){
  app.innerHTML=`<div class="card"><h2>🏆 Progress</h2><div class="grid"><div><div class="small muted">Points</div><div class="score">${state.points}</div></div>
