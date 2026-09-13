@@ -96,6 +96,66 @@ input,select{width:100%;padding:14px;border:1px solid #cddbea;border-radius:14px
 @media(max-width:420px){
  .detail-flag .flagimg{width:210px;height:140px}.quiz-flag .flagimg{width:260px;height:174px}
 }
+
+/* DELUXE VISUAL UPGRADE */
+body{background:
+ radial-gradient(circle at 8% 5%,rgba(88,189,255,.20),transparent 24%),
+ radial-gradient(circle at 92% 12%,rgba(255,205,76,.18),transparent 20%),
+ linear-gradient(180deg,#eef9ff 0%,#f8fcff 50%,#eef7ff 100%)}
+header{background:linear-gradient(135deg,#063b8e 0%,#0878d1 52%,#19a9e8 100%);padding:15px 16px 17px}
+.header-row{max-width:1120px}.header-pill{font-size:13px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.25)}
+main{max-width:1120px;padding-bottom:60px}
+nav{grid-template-columns:repeat(4,1fr);gap:7px;top:83px}
+nav button{min-height:48px;font-size:12px;background:rgba(255,255,255,.94);transition:.18s transform,.18s box-shadow}
+nav button:hover{transform:translateY(-2px);box-shadow:0 7px 18px rgba(20,100,210,.14)}
+nav button.active{background:linear-gradient(135deg,#1268d7,#159de8);box-shadow:0 6px 16px rgba(20,100,210,.24)}
+.card{border-radius:24px;box-shadow:0 10px 34px rgba(22,74,121,.10)}
+.hero{background:linear-gradient(135deg,#fff 5%,#e5f5ff 60%,#eaf0ff 100%);position:relative}
+.hero:after{content:"🌎";position:absolute;right:-12px;top:-28px;font-size:130px;opacity:.09;transform:rotate(-12deg)}
+.big{font-size:38px}
+.world-card{padding:10px;background:linear-gradient(145deg,#075ca8,#0a9ad2);color:white;border:0}
+.world-card h2{margin:8px 8px 3px}.world-card p{margin:0 8px 12px;opacity:.9}
+.world-wrap{background:linear-gradient(#1aa5df,#0477bd);border:4px solid #fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);padding:0;max-height:none}
+.world-svg{min-width:900px;border-radius:18px}
+.world-svg .ocean{fill:url(#oceanGradient)}
+.world-svg .country-shape{fill:#f5c95b;stroke:#fff;stroke-width:.7;cursor:pointer}
+.world-svg .country-shape.clickable:hover{fill:#ffef70;filter:drop-shadow(0 0 5px rgba(255,255,255,.7))}
+.map-labels text{font-family:system-ui,sans-serif;font-weight:900;fill:#fff;paint-order:stroke;stroke:#1b5d8b;stroke-width:4px;stroke-linejoin:round;pointer-events:none}
+.map-labels .continent-pill{fill:rgba(18,100,210,.92);stroke:#fff;stroke-width:2}
+.map-labels .asia{fill:#7c3aed}.map-labels .africa{fill:#f59e0b}.map-labels .europe{fill:#1686e8}.map-labels .na{fill:#ec4899}.map-labels .sa{fill:#f97316}.map-labels .oceania{fill:#16a05b}
+.map-toolbar{display:grid;grid-template-columns:repeat(3,1fr)}
+.map-toolbar .btn{min-width:0}
+.continent-tabs{display:flex;gap:8px;overflow:auto;padding:2px 0 8px}
+.continent-tabs button{border:1px solid #d9e7f4;background:#fff;border-radius:999px;padding:10px 14px;font-weight:900;white-space:nowrap;color:#154a82}
+.continent-tabs button.active{background:#1268d7;color:#fff;border-color:#1268d7}
+.continent-grid{grid-template-columns:repeat(2,1fr)}
+.continent-card{min-height:150px;text-align:left;position:relative;overflow:hidden;transition:.18s transform}
+.continent-card:hover{transform:translateY(-3px)}
+.continent-card:after{content:"";position:absolute;right:-15px;bottom:-30px;font-size:105px;opacity:.10}
+.continent-card[data-c="Asia"]:after{content:"🐼"}.continent-card[data-c="Africa"]:after{content:"🦁"}
+.continent-card[data-c="Europe"]:after{content:"🏰"}.continent-card[data-c="North America"]:after{content:"🗽"}
+.continent-card[data-c="South America"]:after{content:"🦙"}.continent-card[data-c="Oceania"]:after{content:"🦘"}
+.continent-card[data-c="Antarctica"]:after{content:"🐧"}
+.feature-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px}
+.quick-game{display:flex;align-items:center;gap:12px;padding:13px;border-radius:16px;border:1px solid #dbe8f4;background:#fbfdff;margin:8px 0;text-align:left}
+.quick-game .qemoji{font-size:25px;width:35px;text-align:center}.quick-game strong{display:block}.quick-game span{font-size:11px;color:var(--muted)}
+.fact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.fact{padding:14px;border-radius:17px;background:linear-gradient(135deg,#f7fbff,#eef7ff);border:1px solid #deebf6}
+.fact .icon{font-size:24px}.fact strong{display:block;margin-top:5px}.fact span{font-size:12px;color:var(--muted);line-height:1.35}
+.landmark{display:flex;gap:12px;align-items:center;padding:12px;border-radius:16px;background:#fff;border:1px solid #e2ebf4}
+.landmark .photo{font-size:42px;width:62px;height:58px;display:flex;align-items:center;justify-content:center;background:#eef7ff;border-radius:14px}
+.challenge-card{background:linear-gradient(135deg,#32156f,#7b32c9);color:#fff;border:0}
+.challenge-card .btn{background:#fff;color:#54218f;border:0}
+.level-ring{width:94px;height:94px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#3ed68a var(--pct),#dbe7ef 0);position:relative}
+.level-ring:after{content:"";position:absolute;inset:8px;border-radius:50%;background:#fff}
+.level-ring span{position:relative;z-index:1;color:#173b64;font-weight:900;text-align:center;font-size:13px}
+@media(min-width:700px){
+ nav{grid-template-columns:repeat(7,1fr)}
+ .continent-grid{grid-template-columns:repeat(3,1fr)}
+ .feature-grid{grid-template-columns:1.2fr 1fr 1fr}
+}
+@media(max-width:699px){.feature-grid{grid-template-columns:1fr}.big{font-size:32px}.map-toolbar{grid-template-columns:1fr 1fr}.map-toolbar button:last-child{grid-column:span 2}}
+
 </style>
 </head>
 <body>
@@ -103,11 +163,15 @@ input,select{width:100%;padding:14px;border:1px solid #cddbea;border-radius:14px
 <main>
 <nav id="nav">
 <button data-page="home" class="active">🏠 Home</button>
-<button data-page="explore">🌎 Explore</button>
-<button data-page="map">🗺️ Map</button>
+<button data-page="map">🗺️ World Map</button>
+<button data-page="continents">🌎 Continents</button>
+<button data-page="explore">🔎 Countries</button>
 <button data-page="learn">📚 Learn</button>
-<button data-page="quiz">🚩 Flag Quiz</button>
-<button data-page="capital">🏛️ Capital Quiz</button>
+<button data-page="quiz">🚩 Flags</button>
+<button data-page="capital">🏛️ Capitals</button>
+<button data-page="currency">💰 Currency</button>
+<button data-page="challenge">🎮 Challenges</button>
+<button data-page="favorites">❤️ Favorites</button>
 <button data-page="progress">🏆 Progress</button>
 </nav>
 <div id="app"></div>
@@ -346,6 +410,182 @@ function progress(){
  <div class="section-title"><h3>🎖️ Badges</h3></div><div class="badges">${badges.map(b=>`<div class="badge-card ${b[3]?'':'locked'}"><div style="font-size:28px">${b[0]}</div><strong>${b[1]}</strong><div class="small muted">${b[2]}</div></div>`).join('')}</div>
  <div class="actions"><button class="btn" onclick="explore()">🌎 Explore</button><button class="btn" onclick="learnPage()">📚 Learn</button><button class="btn" onclick="localStorage.removeItem('arjunWorldState');location.reload()">Reset progress</button></div>`;
 }
+
+/* ===== ARJUN WORLD EXPLORER DELUXE LAYER ===== */
+const CONTINENT_INFO={
+ Asia:{emoji:"🌏",tag:"The largest continent",color:"#7c3aed",fact:"Home to the world's highest mountains, huge deserts, ancient civilisations and thousands of islands.",landmark:"Taj Mahal",animal:"🐼 Giant panda",region:"East, South, Southeast, Central & West Asia"},
+ Africa:{emoji:"🦁",tag:"The continent of diversity",color:"#f59e0b",fact:"Africa is famous for vast savannas, rainforests, deserts and extraordinary wildlife.",landmark:"Pyramids of Giza",animal:"🦁 Lion",region:"North, West, Central, East & Southern Africa"},
+ Europe:{emoji:"🏰",tag:"A continent of history",color:"#1686e8",fact:"Europe is packed with historic cities, languages, art, castles and landmarks.",landmark:"Eiffel Tower",animal:"🦌 Red deer",region:"Northern, Western, Southern & Eastern Europe"},
+ "North America":{emoji:"🗽",tag:"From Arctic to tropics",color:"#ec4899",fact:"North America stretches from Arctic landscapes to tropical Caribbean islands and Central America.",landmark:"Statue of Liberty",animal:"🦅 Bald eagle",region:"Northern America, Central America & Caribbean"},
+ "South America":{emoji:"🦙",tag:"Home of the Amazon",color:"#f97316",fact:"South America contains the Amazon rainforest, Andes mountains and some of Earth's richest ecosystems.",landmark:"Christ the Redeemer",animal:"🦙 Llama",region:"Andean, Southern Cone, Brazil & Guianas"},
+ Oceania:{emoji:"🦘",tag:"Islands across the Pacific",color:"#16a05b",fact:"Oceania includes Australia, New Zealand and thousands of Pacific islands.",landmark:"Sydney Opera House",animal:"🦘 Kangaroo",region:"Australia, Melanesia, Micronesia & Polynesia"},
+ Antarctica:{emoji:"🐧",tag:"The frozen continent",color:"#4aa4ff",fact:"Antarctica is the coldest continent and is covered by a huge ice sheet.",landmark:"South Pole",animal:"🐧 Penguin",region:"Antarctic mainland & surrounding islands"}
+};
+const LANDMARKS={
+"India":"Taj Mahal","France":"Eiffel Tower","Egypt":"Pyramids of Giza","Italy":"Colosseum","China":"Great Wall of China",
+"United States":"Statue of Liberty","Brazil":"Christ the Redeemer","Australia":"Sydney Opera House","United Kingdom":"Big Ben",
+"Japan":"Mount Fuji","Peru":"Machu Picchu","Greece":"Acropolis","United Arab Emirates":"Burj Khalifa","Canada":"Niagara Falls",
+"South Africa":"Table Mountain","Mexico":"Chichen Itza","Turkey":"Hagia Sophia","Singapore":"Marina Bay Sands","Spain":"Sagrada Familia"
+};
+const LANDMARK_EMOJI={"Taj Mahal":"🕌","Eiffel Tower":"🗼","Pyramids of Giza":"🔺","Colosseum":"🏛️","Great Wall of China":"🏯","Statue of Liberty":"🗽","Christ the Redeemer":"🗿","Sydney Opera House":"🎭","Big Ben":"🕰️","Mount Fuji":"🗻","Machu Picchu":"⛰️","Acropolis":"🏛️","Burj Khalifa":"🏙️","Niagara Falls":"💦","Table Mountain":"⛰️","Chichen Itza":"🛕","Hagia Sophia":"🕌","Marina Bay Sands":"🏨","Sagrada Familia":"⛪","South Pole":"🧊"};
+function continentCountries(name){return countries.filter(c=>c.continent===name)}
+function levelInfo(){
+ const xp=state.points||0; const level=Math.floor(xp/100)+1; const next=level*100; return {xp,level,next,pct:Math.min(100,Math.round((xp-(level-1)*100)/100*100))}
+}
+function addXP(n){state.points=(state.points||0)+n;save()}
+function home(){
+ const L=levelInfo(), featured=pick(countries), pct=Math.min(100,Math.round((state.seen||0)/countries.length*100));
+ app.innerHTML=`
+ <div class="hero card">
+  <div class="small muted">🌟 WELCOME BACK, EXPLORER</div><div class="big">Discover the world, Arjun! 🌍</div>
+  <p>Explore continents, discover famous landmarks, learn currencies and become a geography master.</p>
+  <div class="hero-actions">
+   <button class="btn primary" onclick="page('map')">🗺️ Start map adventure</button>
+   <button class="btn" onclick="page('continents')">🌎 Explore continents</button>
+   <button class="btn gold" onclick="page('challenge')">🎮 Play challenge</button>
+   <button class="btn green" onclick="learnPage()">📚 Learn a country</button>
+  </div>
+ </div>
+ <div class="grid">
+  <div class="stat"><span class="small muted">⭐ XP</span><strong>${L.xp}</strong><div class="progressbar"><div style="width:${L.pct}%"></div></div></div>
+  <div class="stat"><span class="small muted">🏅 Level</span><strong>${L.level}</strong><span class="small muted">${L.next-L.xp} XP to next level</span></div>
+  <div class="stat"><span class="small muted">🌍 Countries</span><strong>${state.seen||0}/${countries.length}</strong></div>
+  <div class="stat"><span class="small muted">🔥 Best streak</span><strong>${state.best||0}</strong></div>
+ </div>
+ <div class="section-title"><h3>🗺️ World at a glance</h3><button class="chip" onclick="page('map')">Open full map →</button></div>
+ <div class="world-card card"><h2>Tap a continent or country</h2><p>Explore the interactive map and open a country profile.</p>
+  <div class="world-wrap" id="homeMap">${enhancedMapSvg()}</div>
+ </div>
+ <div class="section-title"><h3>🌎 Explore by continent</h3></div>
+ <div class="continent-grid">${continents.map(([n,e])=>`<button class="continent-card" data-c="${esc(n)}" onclick="continentPage('${esc(n)}')"><div class="emoji">${e}</div><strong>${n}</strong><span>${continentCountries(n).length} countries • ${CONTINENT_INFO[n].tag}</span></button>`).join('')}</div>
+ <div class="feature-grid">
+  <div class="card"><div class="section-title"><h3>⭐ Featured country</h3></div><div class="mini-country" onclick="showCountry(${countries.indexOf(featured)})">${flagImg(featured,160)}<div><strong>${esc(featured.name)}</strong><span class="small muted">${esc(featured.capital)}</span><span class="small muted">💰 ${esc(featured.currency.name)}</span></div></div></div>
+  <div class="card"><div class="section-title"><h3>🎮 Quick games</h3></div>
+   <button class="quick-game" onclick="quiz('flag')"><div class="qemoji">🚩</div><div><strong>Flag Quiz</strong><span>Can you name the flag?</span></div></button>
+   <button class="quick-game" onclick="quiz('capital')"><div class="qemoji">🏛️</div><div><strong>Capital Quiz</strong><span>Test your capital knowledge</span></div></button>
+   <button class="quick-game" onclick="quiz('currency')"><div class="qemoji">💰</div><div><strong>Currency Quiz</strong><span>Match countries to currencies</span></div></button>
+  </div>
+  <div class="card challenge-card"><div class="section-title"><h3>🚀 Adventure</h3></div><p>Find countries from clues and earn bonus XP.</p><button class="btn" onclick="page('challenge')">Start challenge →</button></div>
+ </div>
+ <div class="card"><div class="section-title"><h3>🏆 Your journey</h3><span class="small muted">${pct}% explored</span></div><div class="progressbar"><div style="width:${pct}%"></div></div><p class="small muted">${state.seen||0} countries discovered. ${(state.favorites||[]).length} saved as favorites.</p></div>`;
+ bindMap("homeMap"); updateHeader();
+}
+function enhancedMapSvg(){
+ let svg=WORLD_SVG;
+ if(!svg.includes("map-labels")){
+  svg=svg.replace('<rect width="1200" height="600" class="ocean"/>',
+  '<defs><linearGradient id="oceanGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0878bd"/><stop offset=".55" stop-color="#1aa5df"/><stop offset="1" stop-color="#075ca8"/></linearGradient></defs><rect width="1200" height="600" class="ocean"/>'
+  );
+  svg=svg.replace('</svg>',`<g class="map-labels">
+  <rect class="continent-pill na" x="125" y="205" rx="18" width="155" height="38"/><text x="202" y="231" text-anchor="middle" font-size="19">NORTH AMERICA</text>
+  <rect class="continent-pill sa" x="255" y="410" rx="18" width="150" height="38"/><text x="330" y="436" text-anchor="middle" font-size="19">SOUTH AMERICA</text>
+  <rect class="continent-pill europe" x="500" y="190" rx="18" width="105" height="38"/><text x="552" y="216" text-anchor="middle" font-size="19">EUROPE</text>
+  <rect class="continent-pill africa" x="505" y="305" rx="18" width="105" height="38"/><text x="557" y="331" text-anchor="middle" font-size="19">AFRICA</text>
+  <rect class="continent-pill asia" x="720" y="220" rx="18" width="90" height="38"/><text x="765" y="246" text-anchor="middle" font-size="19">ASIA</text>
+  <rect class="continent-pill oceania" x="930" y="405" rx="18" width="125" height="38"/><text x="992" y="431" text-anchor="middle" font-size="19">OCEANIA</text>
+  <text x="600" y="555" text-anchor="middle" font-size="17">🐧 ANTARCTICA • SOUTH POLE</text>
+  </g></svg>`)
+ }
+ return svg
+}
+function bindMap(id,filter=''){
+ const root=document.getElementById(id); if(!root)return;
+ root.querySelectorAll('.clickable').forEach(el=>{
+  const c=countries.find(x=>x.name===el.dataset.country);
+  if(c && filter && c.continent!==filter){el.style.opacity='.18';el.style.pointerEvents='none'}
+  else if(c){el.style.opacity='1';el.style.pointerEvents='auto';el.addEventListener('click',()=>showCountry(countries.indexOf(c)))}
+ });
+}
+function mapPage(filter=''){
+ app.innerHTML=`<div class="card world-card"><h2>🗺️ World Map Adventure</h2><p>Tap a country to discover it. Choose a continent to focus your adventure.</p>
+ <div class="continent-tabs"><button class="${!filter?'active':''}" onclick="mapPage()">🌎 All</button>${continents.map(([n,e])=>`<button class="${filter===n?'active':''}" onclick="mapPage('${esc(n)}')">${e} ${esc(n)}</button>`).join('')}</div>
+ <div class="world-wrap" id="worldMap">${enhancedMapSvg()}</div>
+ <div class="map-tip">✨ Tap a country • Small countries may be easier to find from Countries search</div></div>
+ <div class="grid"><div class="stat"><span class="small muted">Countries shown</span><strong>${filter?continentCountries(filter).length:countries.length}</strong></div><div class="stat"><span class="small muted">Tip</span><strong>Tap & learn</strong><span class="small muted">Every country has capital + currency</span></div></div>`;
+ bindMap('worldMap',filter);
+}
+function continentPage(name){
+ const info=CONTINENT_INFO[name], arr=continentCountries(name), sample=arr.slice(0,8);
+ app.innerHTML=`<div class="hero card" style="border-top:6px solid ${info.color}"><div style="font-size:44px">${info.emoji}</div><div class="big">${name}</div><p>${info.tag}. ${info.fact}</p>
+ <div class="grid" style="margin-top:15px"><div class="stat"><span class="small muted">Countries</span><strong>${arr.length}</strong></div><div class="stat"><span class="small muted">Region</span><strong style="font-size:14px">${info.region}</strong></div></div></div>
+ <div class="section-title"><h3>🌍 Continent map</h3><button class="chip" onclick="mapPage('${esc(name)}')">Focus on map →</button></div>
+ <div class="card world-card"><div class="world-wrap" id="continentMap">${enhancedMapSvg()}</div></div>
+ <div class="section-title"><h3>✨ Things to know</h3></div>
+ <div class="fact-grid"><div class="fact"><div class="icon">${info.animal}</div><strong>Famous wildlife</strong><span>${info.animal} is one of the animals associated with this region.</span></div>
+ <div class="fact"><div class="icon">🏛️</div><strong>Famous landmark</strong><span>${info.landmark}</span></div>
+ <div class="fact"><div class="icon">🧭</div><strong>Geography</strong><span>${info.region}</span></div>
+ <div class="fact"><div class="icon">💡</div><strong>Explorer tip</strong><span>Pick three countries and remember their flags, capitals and currencies.</span></div></div>
+ <div class="section-title"><h3>📍 Countries in ${name}</h3></div>
+ <div class="country-card-grid">${sample.map(c=>`<button class="mini-country" onclick="showCountry(${countries.indexOf(c)})">${flagImg(c,80)}<div><strong>${esc(c.name)}</strong><span class="small muted">${esc(c.capital)}</span></div></button>`).join('')}</div>
+ <div class="actions"><button class="btn primary" onclick="quizContinent('${esc(name)}','flag')">🚩 ${name} Flag Challenge</button><button class="btn gold" onclick="quizContinent('${esc(name)}','capital')">🏛️ Capital Challenge</button></div>`;
+ bindMap('continentMap',name);
+}
+function quizContinent(name,kind){state.quizContinent=name;quiz(kind)}
+function quiz(kind){
+ let pool=(state.quizContinent?continentCountries(state.quizContinent):countries); if(pool.length<4)pool=countries;
+ const correct=(currentQuiz&&currentQuiz.kind===kind&&currentQuiz.correct&&pool.includes(currentQuiz.correct))?currentQuiz.correct:pick(pool);
+ currentQuiz={kind,correct}; const choices=[correct];
+ while(choices.length<4){const o=pick(pool),ans=quizAnswer(o,kind);if(!choices.some(x=>quizAnswer(x,kind)===ans))choices.push(o)}
+ choices.sort(()=>Math.random()-.5);
+ let q='';
+ if(kind==='flag')q=`<div class="quiz-flag">${flagImg(correct,320)}</div><div class="quiz-question">Which country has this flag?</div>`;
+ else if(kind==='capital')q=`<div class="quiz-flag">${flagImg(correct,240)}</div><div class="quiz-question">What is the capital of ${esc(correct.name)}?</div>`;
+ else q=`<div class="quiz-flag"><div style="font-size:72px">💰</div></div><div class="quiz-question">Which currency is used in ${esc(correct.name)}?</div>`;
+ app.innerHTML=`<div class="card"><div class="small muted">🎮 ${state.quizContinent?esc(state.quizContinent)+' ':''}CHALLENGE</div><h2>${kind==='flag'?'🚩 Flag Quiz':kind==='capital'?'🏛️ Capital Quiz':'💰 Currency Quiz'}</h2>${q}<div id="opts"></div><div id="result"></div></div>
+ <div class="card"><div class="small muted">⭐ XP</div><div class="score">${state.points||0}</div><p class="small muted">Correct answer = +10 XP • Build a streak to earn badges.</p></div>`;
+ const box=document.getElementById('opts');choices.forEach(o=>{const b=document.createElement('button');b.className='option';b.textContent=quizAnswer(o,kind);b.onclick=()=>answerQuiz(b,quizAnswer(o,kind));box.appendChild(b)})
+}
+function quizAnswer(c,kind){return kind==='flag'?c.name:kind==='capital'?c.capital:`${c.currency.name} (${c.currency.code})`}
+function challenge(){
+ const c=pick(countries), clueType=pick(['continent','capital','currency','landmark']);
+ let clue=clueType==='continent'?`I am in ${c.continent}.`:clueType==='capital'?`My capital is ${c.capital}.`:clueType==='currency'?`People use ${c.currency.name} (${c.currency.code}) here.`:`A famous landmark here is ${LANDMARKS[c.name]||CONTINENT_INFO[c.continent]?.landmark}.`;
+ const choices=[c];while(choices.length<4){const o=pick(countries);if(!choices.some(x=>x.name===o.name))choices.push(o)}choices.sort(()=>Math.random()-.5);
+ app.innerHTML=`<div class="card challenge-card"><div class="small">🕵️ WHERE IN THE WORLD?</div><h2>Can you solve the clue?</h2><p style="font-size:20px">${esc(clue)}</p><p>Choose the country:</p><div id="challengeOpts"></div><div id="challengeResult"></div></div>`;
+ const box=document.getElementById('challengeOpts');choices.forEach(o=>{const b=document.createElement('button');b.className='option';b.textContent=o.name;b.onclick=()=>{document.querySelectorAll('#challengeOpts .option').forEach(x=>x.disabled=true);if(o===c){b.classList.add('correct');addXP(20);state.streak=(state.streak||0)+1;state.best=Math.max(state.best||0,state.streak);document.getElementById('challengeResult').innerHTML='<div class="result success">Brilliant! 🌟 +20 XP</div>'}else{b.classList.add('wrong');state.streak=0;document.getElementById('challengeResult').innerHTML=`<div class="result failure">The answer is <b>${esc(c.name)}</b>.</div>`}save();document.getElementById('challengeResult').innerHTML+=`<button class="btn" style="margin-top:10px;width:100%" onclick="challenge()">Next clue →</button>`};box.appendChild(b)})
+}
+function currencyQuiz(){quiz('currency')}
+function favorites(){
+ const arr=(state.favorites||[]).map(n=>countries.find(c=>c.name===n)).filter(Boolean);
+ app.innerHTML=`<div class="card"><h2>❤️ Favorite countries</h2><p class="small muted">Countries Arjun wants to remember.</p></div>${arr.length?`<div class="country-card-grid">${arr.map(c=>`<button class="mini-country" onclick="showCountry(${countries.indexOf(c)})">${flagImg(c,80)}<div><strong>${esc(c.name)}</strong><span class="small muted">${esc(c.capital)}</span><span class="small muted">💰 ${esc(c.currency.name)}</span></div></button>`).join('')}</div>`:'<div class="card empty">No favorites yet. Open a country and tap ❤️ Favorite.</div>'}`;
+}
+function progress(){
+ const L=levelInfo(),seen=state.seen||0,pct=Math.round(seen/countries.length*100),badges=[
+ ['🌱','First Steps',seen>=1],['🧭','Explorer',seen>=10],['🌍','World Explorer',seen>=50],['🚀','Global Genius',seen>=100],
+ ['🚩','Flag Expert',(state.flagCorrect||0)>=10],['💰','Currency Pro',(state.currencyCorrect||0)>=10],['🔥','On Fire',(state.best||0)>=5],['❤️','Collector',(state.favorites||[]).length>=5]
+ ];
+ app.innerHTML=`<div class="card"><h2>🏆 Your Explorer Journey</h2><div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap"><div class="level-ring" style="--pct:${L.pct}%"><span>LEVEL<br>${L.level}</span></div><div><div class="big">${L.xp} XP</div><div class="small muted">${L.next-L.xp} XP to Level ${L.level+1}</div><div class="progressbar" style="width:260px"><div style="width:${L.pct}%"></div></div></div></div>
+ <div class="grid" style="margin-top:18px"><div class="stat"><span class="small muted">Countries discovered</span><strong>${seen}/${countries.length}</strong></div><div class="stat"><span class="small muted">Best streak</span><strong>🔥 ${state.best||0}</strong></div><div class="stat"><span class="small muted">Lessons</span><strong>${state.learned||0}</strong></div><div class="stat"><span class="small muted">Favorites</span><strong>❤️ ${(state.favorites||[]).length}</strong></div></div>
+ <div style="margin-top:18px"><strong>🌍 World coverage — ${pct}%</strong><div class="progressbar"><div style="width:${pct}%"></div></div></div></div>
+ <div class="section-title"><h3>🎖️ Achievements</h3></div><div class="badges">${badges.map(b=>`<div class="badge-card ${b[2]?'':'locked'}"><div style="font-size:30px">${b[0]}</div><strong>${b[1]}</strong><div class="small muted">${b[2]?'Unlocked!':'Keep exploring'}</div></div>`).join('')}</div>`;
+}
+function learnPage(){const c=pick(countries);state.learned=(state.learned||0)+1;save();const lm=LANDMARKS[c.name]||CONTINENT_INFO[c.continent]?.landmark||'A special place to discover';app.innerHTML=`<div class="hero card"><div class="small muted">📚 COUNTRY SPOTLIGHT</div><div class="detail-flag">${flagImg(c,320)}</div><div class="detail-title">${esc(c.name)}</div><div style="text-align:center"><span class="badge">${esc(c.continent)}</span><span class="badge">${esc(c.currency.code)}</span></div>
+ <div class="info-grid"><div class="info"><div class="label">🏛️ Capital</div><strong>${esc(c.capital)}</strong></div><div class="info"><div class="label">💰 Currency</div><strong>${esc(c.currency.name)}</strong><span class="small muted">${esc(c.currency.code)}</span></div><div class="info"><div class="label">🗺️ Continent</div><strong>${esc(c.continent)}</strong></div><div class="info"><div class="label">🏛️ Landmark</div><strong>${esc(lm)}</strong></div></div>
+ <div class="actions"><button class="btn primary" onclick="showCountry(${countries.indexOf(c)})">Open profile</button><button class="btn gold" onclick="learnPage()">Another country →</button></div></div>
+ <div class="card"><h3>💡 Explorer mission</h3><p>Try to remember <b>${esc(c.name)}</b> by its flag, capital <b>${esc(c.capital)}</b> and currency <b>${esc(c.currency.name)}</b>.</p></div>`}
+function showCountry(i){
+ const c=countries[i];if(!c)return;addSeen(c.name);save();const lm=LANDMARKS[c.name]||CONTINENT_INFO[c.continent]?.landmark||'Explore the region';const animal=CONTINENT_INFO[c.continent]?.animal||'🌎';
+ app.innerHTML=`<div class="card"><div class="detail-flag">${flagImg(c,320)}</div><div class="detail-title">${esc(c.name)}</div><div style="text-align:center"><span class="badge">${esc(c.continent)}</span><span class="badge">${esc(c.un_status||'UN member')}</span></div>
+ <div class="info-grid"><div class="info"><div class="label">🏛️ Capital</div><strong>${esc(c.capital)}</strong></div><div class="info"><div class="label">💰 Currency</div><strong>${esc(c.currency.name)}</strong><span class="small muted">${esc(c.currency.code)}</span></div><div class="info"><div class="label">🌍 Continent</div><strong>${esc(c.continent)}</strong></div><div class="info"><div class="label">🏳️ UN Status</div><strong>${esc(c.un_status||'UN member')}</strong></div></div>
+ <div class="section-title"><h3>✨ Discover</h3></div><div class="fact-grid"><div class="fact"><div class="icon">${animal}</div><strong>Regional wildlife</strong><span>Explore the animals and ecosystems of ${esc(c.continent)}.</span></div><div class="fact"><div class="icon">${LANDMARK_EMOJI[lm]||'🏛️'}</div><strong>Famous landmark</strong><span>${esc(lm)}</span></div></div>
+ <div class="actions"><button class="btn ${isFav(c.name)?'gold':''}" onclick="toggleFav(${JSON.stringify(c.name)})">${isFav(c.name)?'❤️ Saved':'🤍 Add favorite'}</button><button class="btn primary" onclick="quizFor(${JSON.stringify(c.name)},'flag')">🚩 Flag</button><button class="btn" onclick="quizFor(${JSON.stringify(c.name)},'capital')">🏛️ Capital</button><button class="btn green" onclick="quizFor(${JSON.stringify(c.name)},'currency')">💰 Currency</button></div></div>
+ <div class="card"><h3>🧭 Continue exploring</h3><div class="actions"><button class="btn" onclick="continentPage('${esc(c.continent)}')">Explore ${esc(c.continent)}</button><button class="btn" onclick="mapPage('${esc(c.continent)}')">Map this continent</button><button class="btn" onclick="learnPage()">Random lesson</button></div></div>`;
+ updateHeader();
+}
+function quizFor(name,kind){state.quizContinent='';currentQuiz={kind,correct:countries.find(c=>c.name===name)};quiz(kind)}
+function answerQuiz(btn,answer){
+ const c=currentQuiz.correct,correct=quizAnswer(c,currentQuiz.kind);document.querySelectorAll('.option').forEach(b=>b.disabled=true);
+ if(answer===correct){btn.classList.add('correct');addXP(10);state.streak=(state.streak||0)+1;state.best=Math.max(state.best||0,state.streak);if(currentQuiz.kind==='flag')state.flagCorrect=(state.flagCorrect||0)+1;if(currentQuiz.kind==='currency')state.currencyCorrect=(state.currencyCorrect||0)+1;document.getElementById('result').innerHTML=`<div class="result success">Correct! 🎉 +10 XP • 🔥 Streak ${state.streak}</div>`}
+ else{btn.classList.add('wrong');state.streak=0;document.getElementById('result').innerHTML=`<div class="result failure">Not quite. The correct answer is <b>${esc(correct)}</b>.</div>`}
+ save();document.getElementById('result').innerHTML+=`<button class="btn primary" style="margin-top:10px;width:100%" onclick="quiz('${currentQuiz.kind}')">Next question →</button>`;
+}
+function page(p){
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
+ if(p==='home')home();else if(p==='map')mapPage();else if(p==='continents')continentsPage();else if(p==='explore')explore();else if(p==='learn')learnPage();else if(p==='quiz')quiz('flag');else if(p==='capital')quiz('capital');else if(p==='currency')quiz('currency');else if(p==='challenge')challenge();else if(p==='favorites')favorites();else progress();
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function continentsPage(){app.innerHTML=`<div class="hero card"><div class="big">🌎 Explore the Continents</div><p>Every continent has its own landscapes, wildlife, cultures and stories. Pick one to begin.</p></div><div class="continent-grid">${Object.entries(CONTINENT_INFO).map(([n,x])=>`<button class="continent-card" data-c="${esc(n)}" onclick="continentPage('${esc(n)}')"><div class="emoji">${x.emoji}</div><strong>${n}</strong><span>${continentCountries(n).length} countries • ${x.tag}</span></button>`).join('')}</div>`}
+
+state.favorites=state.favorites||[];state.seenNames=state.seenNames||[];state.learned=state.learned||0;state.flagCorrect=state.flagCorrect||0;state.currencyCorrect=state.currencyCorrect||0;
 home();
 if('serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
