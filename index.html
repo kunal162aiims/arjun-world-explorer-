@@ -25,7 +25,7 @@ nav button.active{background:var(--blue);color:white}
 input,select{width:100%;padding:13px;border:1px solid #cbd9e3;border-radius:12px;font-size:16px;background:white;margin:4px 0}
 button{cursor:pointer}.primary{background:var(--blue);color:white}.success{background:var(--good);color:white}
 .country{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #edf0f3}
-.flag{font-size:30px;width:40px;text-align:center}.country strong{display:block}
+.flag{width:64px;text-align:center;display:flex;justify-content:center;align-items:center}.flagimg{width:56px;height:42px;object-fit:contain;border-radius:4px;box-shadow:0 1px 4px #0b3a5d22}.country strong{display:block}
 .badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#e7f2fa;color:var(--blue);font-size:11px;font-weight:700}
 .map{width:100%;border-radius:14px;display:block;background:#dff3ff}
 .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.actions button{flex:1;min-width:130px}
@@ -52,6 +52,18 @@ let currentQuiz=null;
 function save(){localStorage.setItem('arjunWorldState',JSON.stringify(state))}
 function pick(a){return a[Math.floor(Math.random()*a.length)]}
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function flagCode(flag){
+ const chars=[...(flag||"")].filter(ch=>{
+   const cp=ch.codePointAt(0);
+   return cp>=0x1F1E6 && cp<=0x1F1FF;
+ });
+ return chars.length===2 ? chars.map(ch=>String.fromCharCode(ch.codePointAt(0)-0x1F1E6+65)).join("").toLowerCase() : "";
+}
+function flagImg(c,size=160){
+ const code=flagCode(c.flag);
+ return code ? `<img class="flagimg" src="https://flagcdn.com/w${size}/${code}.png" alt="Flag of ${esc(c.name)}">` : `<span class="flag">🌐</span>`;
+}
+
 function page(p){
  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
  if(p==='home')home();else if(p==='explore')explore();else if(p==='map')mapPage();else if(p==='quiz')quiz('flag');else if(p==='capital')quiz('capital');else progress();
@@ -73,13 +85,13 @@ function explore(){
 function renderCountries(){
  const q=(document.getElementById('search').value||'').toLowerCase(),ct=document.getElementById('continent').value;
  const arr=countries.map((c,i)=>({c,i})).filter(x=>(!q||x.c.name.toLowerCase().includes(q)||x.c.capital.toLowerCase().includes(q))&&(!ct||x.c.continent===ct)).slice(0,80);
- document.getElementById('list').innerHTML=arr.map(x=>`<div class="card country" onclick="showCountry(${x.i})"><div class="flag">${x.c.flag||'🌐'}</div><div><strong>${esc(x.c.name)}</strong><span class="small muted">${esc(x.c.capital)} • ${esc(x.c.continent)}</span></div></div>`).join('')||'<div class="card">No country found.</div>';
+ document.getElementById('list').innerHTML=arr.map(x=>`<div class="card country" onclick="showCountry(${x.i})"><div class="flag">${flagImg(x.c,80)}</div><div><strong>${esc(x.c.name)}</strong><span class="small muted">${esc(x.c.capital)} • ${esc(x.c.continent)}</span></div></div>`).join('')||'<div class="card">No country found.</div>';
 }
 function showCountry(i){
  const c=countries[i]; state.seen=(state.seen||0)+1; save();
- app.innerHTML=`<div class="card"><div class="flag">${c.flag||'🌐'}</div><h2>${esc(c.name)}</h2>
+ app.innerHTML=`<div class="card"><div class="flag">${flagImg(c,160)}</div><h2>${esc(c.name)}</h2>
  <p><span class="badge">${esc(c.continent)}</span> <span class="badge">${esc(c.un_status||'UN member')}</span></p>
- <div class="grid"><div><div class="small muted">Capital</div><strong>${esc(c.capital)}</strong></div><div><div class="small muted">Flag</div><strong>${c.flag||'—'}</strong></div></div></div>
+ <div class="grid"><div><div class="small muted">Capital</div><strong>${esc(c.capital)}</strong></div><div><div class="small muted">Flag</div>${flagImg(c,80)}</div></div></div>
  <div class="actions"><button class="btn primary" onclick="page('explore')">← Countries</button><button class="btn" onclick="showCountry(${Math.floor(Math.random()*countries.length)})">🎲 Random</button></div>`;
 }
 function mapPage(){
@@ -88,14 +100,21 @@ function mapPage(){
 }
 function quiz(kind){
  currentQuiz={kind,correct:pick(countries)};
- const c=currentQuiz.correct,pool=countries.filter(x=>x!==c);
- const opts=[c,pick(pool),pick(pool),pick(pool)].sort(()=>Math.random()-.5);
+ const c=currentQuiz.correct;
+ const pool=countries.filter(x=>x!==c);
+ const choices=[c];
+ while(choices.length<4){
+   const candidate=pick(pool);
+   const answer=kind==='flag'?candidate.name:candidate.capital;
+   if(!choices.some(x=>(kind==='flag'?x.name:x.capital)===answer)) choices.push(candidate);
+ }
+ choices.sort(()=>Math.random()-.5);
  const question=kind==='flag'
-   ? `<div style="font-size:76px;text-align:center;margin:16px 0;line-height:1">${c.flag||'🌐'}</div><p style="text-align:center;font-weight:700">Which country has this flag?</p>`
+   ? `<div style="text-align:center;margin:18px 0">${flagImg(c,320)}</div><p style="text-align:center;font-weight:700">Which country has this flag?</p>`
    : `<p>What is the capital of <b>${esc(c.name)}</b>?</p>`;
  app.innerHTML=`<div class="card"><h2>${kind==='flag'?'🚩 Flag Quiz':'🏛️ Capital Quiz'}</h2><div>${question}</div><div id="opts"></div><div id="result"></div></div>`;
  const box=document.getElementById('opts');
- opts.forEach(o=>{
+ choices.forEach(o=>{
    const btn=document.createElement('button');
    btn.className='option'; btn.type='button';
    btn.textContent=kind==='flag'?o.name:o.capital;
@@ -106,18 +125,10 @@ function quiz(kind){
 function answerQuiz(btn,answer){
  const c=currentQuiz.correct,correct=currentQuiz.kind==='flag'?c.name:c.capital;
  document.querySelectorAll('.option').forEach(b=>b.disabled=true);
- if(answer===correct){
-   btn.classList.add('correct'); state.points+=10; state.streak=(state.streak||0)+1; state.best=Math.max(state.best,state.streak);
-   document.getElementById('result').innerHTML='<p class="success" style="padding:12px;border-radius:12px">Correct! 🎉 +10 points</p>';
- }else{
-   btn.classList.add('wrong'); state.streak=0;
-   document.getElementById('result').innerHTML=`<p style="padding:12px;border-radius:12px;background:#fff2f2">Not quite. Correct answer: <b>${esc(correct)}</b></p>`;
- }
- save();
- const next=document.createElement('button');
- next.className='btn primary'; next.type='button'; next.style.cssText='margin-top:8px;width:100%'; next.textContent='Next question →';
- next.addEventListener('click',()=>quiz(currentQuiz.kind));
- document.getElementById('result').appendChild(next);
+ if(answer===correct){btn.classList.add('correct');state.points+=10;state.streak=(state.streak||0)+1;state.best=Math.max(state.best,state.streak);
+  document.getElementById('result').innerHTML='<p class="success" style="padding:12px;border-radius:12px">Correct! 🎉 +10 points</p>';
+ }else{btn.classList.add('wrong');state.streak=0;document.getElementById('result').innerHTML=`<p style="padding:12px;border-radius:12px;background:#fff2f2">Not quite. Correct answer: <b>${esc(correct)}</b></p>`}
+ save();document.getElementById('result').innerHTML+=`<button class="btn primary" style="margin-top:8px;width:100%" onclick="quiz('${currentQuiz.kind}')">Next question →</button>`;
 }
 function progress(){
  app.innerHTML=`<div class="card"><h2>🏆 Progress</h2><div class="grid"><div><div class="small muted">Points</div><div class="score">${state.points}</div></div>
